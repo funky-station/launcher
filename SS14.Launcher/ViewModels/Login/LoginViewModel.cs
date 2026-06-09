@@ -21,6 +21,7 @@ public class LoginViewModel : BaseLoginViewModel
 
     [Reactive] public bool IsInputValid { get; private set; }
     [Reactive] public bool IsPasswordVisible { get; set; }
+    public string AuthDisclaimer { get; private set; }
 
     public LoginViewModel(MainWindowLoginViewModel parentVm, AuthApi authApi,
         LoginManager loginMgr, DataManager dataManager) : base(parentVm)
@@ -32,6 +33,9 @@ public class LoginViewModel : BaseLoginViewModel
 
         this.WhenAnyValue(x => x.EditingUsername, x => x.EditingPassword)
             .Subscribe(s => { IsInputValid = !string.IsNullOrEmpty(s.Item1) && !string.IsNullOrEmpty(s.Item2); });
+
+        AuthDisclaimer = _loc.GetString("login-login-auth-disclaimer",
+            ("auth-server", _dataManager.GetCVar(CVars.CustomAuthUrl)));
     }
 
     public async void OnLogInButtonPressed()

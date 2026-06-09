@@ -6,6 +6,7 @@ using SS14.Launcher.Localization;
 using SS14.Launcher.Models.ContentManagement;
 using SS14.Launcher.Models.Data;
 using SS14.Launcher.Models.EngineManager;
+using SS14.Launcher.Models.Logins;
 using SS14.Launcher.Utility;
 
 namespace SS14.Launcher.ViewModels.MainWindowTabs;
@@ -13,8 +14,13 @@ namespace SS14.Launcher.ViewModels.MainWindowTabs;
 public class OptionsTabViewModel : MainWindowTabViewModel
 {
     public DataManager Cfg { get; }
+
     private readonly IEngineManager _engineManager;
     private readonly ContentManager _contentManager;
+    private readonly LoginManager _loginManager;
+
+    public string FunkyAuthUrl = "https://tempauth.funkystation.org/";
+    public string WizDenAuthUrl = "https://auth.spacestation14.com/";
 
     public LanguageSelectorViewModel Language { get; } = new();
 
@@ -23,9 +29,11 @@ public class OptionsTabViewModel : MainWindowTabViewModel
         Cfg = Locator.Current.GetRequiredService<DataManager>();
         _engineManager = Locator.Current.GetRequiredService<IEngineManager>();
         _contentManager = Locator.Current.GetRequiredService<ContentManager>();
+        _loginManager = Locator.Current.GetRequiredService<LoginManager>();
 
         DisableIncompatibleMacOS = OperatingSystem.IsMacOS();
     }
+
     public bool DisableIncompatibleMacOS { get; }
 
     public override string Name => LocalizationManager.Instance.GetString("tab-options-title");
@@ -58,6 +66,40 @@ public class OptionsTabViewModel : MainWindowTabViewModel
             Cfg.SetCVar(CVars.OverrideAssets, value);
             Cfg.CommitConfig();
         }
+    }
+
+    private string? _pendingAuthUrl;
+
+    public string CustomAuthUrl
+    {
+        get => _pendingAuthUrl ?? Cfg.GetCVar(CVars.CustomAuthUrl);
+        set => _pendingAuthUrl = value;
+    }
+
+    public void SetAuthUrl()
+    {
+        if (_pendingAuthUrl == null || _pendingAuthUrl == Cfg.GetCVar(CVars.CustomAuthUrl))
+            return;
+
+        if (!_pendingAuthUrl.EndsWith('/'))
+            _pendingAuthUrl += '/';
+
+        // TODO: validate auth URL
+
+        Cfg.SetCVar(CVars.CustomAuthUrl, _pendingAuthUrl);
+
+        if (_loginManager.ActiveAccount != null)
+            Cfg.RemoveLogin(_loginManager.ActiveAccount.LoginInfo);
+
+        Cfg.CommitConfig();
+
+        _pendingAuthUrl = null;
+    }
+
+    public void SetAuthUrl(string url)
+    {
+        _pendingAuthUrl = url;
+        SetAuthUrl();
     }
 
     public void ClearEngines()

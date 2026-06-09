@@ -47,6 +47,9 @@
                 Command="{Binding ResendConfirmationPressed}"/>
     </DockPanel>
 
+    <TextBlock HorizontalAlignment="Center"
+               DockPanel.Dock="Top"
+               Text="{Binding AuthDisclaimer}" />
     <Button DockPanel.Dock="Bottom" Classes="BigButton" Margin="0 4" HorizontalAlignment="Center"
             Content="{loc:Loc login-login-button-register}" Command="{Binding RegisterPressed}"
             IsEnabled="{Binding !Busy}" />

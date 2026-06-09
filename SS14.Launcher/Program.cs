@@ -219,7 +219,7 @@ internal static class Program
         Locator.CurrentMutable.RegisterConstant(http);
 
         var loc = new LocalizationManager(cfg);
-        var authApi = new AuthApi(http);
+        var authApi = new AuthApi(cfg, http);
         var hubApi = new HubApi(http);
         var launcherInfo = new LauncherInfoManager(http);
         var overrideAssets = new OverrideAssetsManager(cfg, http, launcherInfo);
