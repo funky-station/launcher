@@ -143,6 +143,7 @@ login-login-button-resend = Resend email confirmation
 login-login-button-register = Don't have an account? Register!
 login-login-busy-logging-in = Logging in…
 login-login-error-title = Unable to log in
+login-login-auth-disclaimer = Current auth server: {$auth-server}
 
 ## Strings for the "register confirmation" view on login
 
@@ -365,6 +366,11 @@ tab-options-disable-signing = Disable Engine Signature Checks
 tab-options-disable-signing-desc = { "[" }DEV ONLY] Disables verification of engine signatures. DO NOT ENABLE UNLESS YOU KNOW EXACTLY WHAT YOU'RE DOING.
 tab-options-hub-settings = Hub Settings
 tab-options-hub-settings-desc = Change what hub server or servers you would like to use to fetch the server list.
+tab-options-auth-url = https://tempauth.funkystation.org/
+tab-options-auth-url-button = Set Auth URL
+tab-options-set-wizden = Set to WizDen Auth
+tab-options-set-funky = Set to Funky Auth
+tab-options-auth-url-desc = Change what auth server you're using.
 tab-options-desc-incompatible = This option is incompatible with your platform and has been disabled.
 
 ## For the language selection menu.

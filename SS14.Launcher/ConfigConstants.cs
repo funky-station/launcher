@@ -28,7 +28,7 @@ public static class ConfigConstants
 
     private static readonly UrlFallbackSetStats StatsHubInfra = new(2);
 
-    public static readonly UrlFallbackSet AuthUrl = new(["https://auth.spacestation14.com/", "https://auth.fallback.spacestation14.com/"], StatsHubInfra);
+    public static readonly UrlFallbackSet AuthUrl = new(["https://tempauth.funkystation.org/", "https://tempauth.fallback.funkystation.org/"], StatsHubInfra);
     public static readonly UrlFallbackSet[] DefaultHubUrls = [new(["https://hub.spacestation14.com/", "https://hub.fallback.spacestation14.com/"], StatsHubInfra)];
     public const string DiscordUrl = "https://discord.ss14.io/";
     public const string AccountBaseUrl = "https://account.spacestation14.com/Identity/Account/";

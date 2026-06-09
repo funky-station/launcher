@@ -16,18 +16,29 @@ namespace SS14.Launcher.Api;
 
 public sealed class AuthApi
 {
+    private readonly DataManager _cfg;
     private readonly HttpClient _httpClient;
 
-    public AuthApi(HttpClient http)
+    public AuthApi(DataManager cfg,
+        HttpClient http)
     {
+        _cfg = cfg;
         _httpClient = http;
+    }
+
+    private UrlFallbackSet GetAuthUrl()
+    {
+        // TODO: testing purposes, do this better later
+        var authUrl = _cfg.GetCVar(CVars.CustomAuthUrl);
+        return new UrlFallbackSet([authUrl, authUrl]);
     }
 
     public async Task<AuthenticateResult> AuthenticateAsync(AuthenticateRequest request)
     {
         try
         {
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/authenticate";
+            var baseAuthUrl = GetAuthUrl();
+            var authUrl = baseAuthUrl + "api/auth/authenticate";
 
             using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
 
@@ -80,7 +91,8 @@ public sealed class AuthApi
         {
             var request = new RegisterRequest(username, email, password);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/register";
+            var baseAuthUrl = GetAuthUrl();
+            var authUrl = baseAuthUrl + "api/auth/register";
 
             using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
 
@@ -122,7 +134,8 @@ public sealed class AuthApi
         {
             var request = new ResetPasswordRequest(email);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/resetPassword";
+            var baseAuthUrl = GetAuthUrl();
+            var authUrl = baseAuthUrl + "api/auth/resetPassword";
 
             using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
 
@@ -149,7 +162,8 @@ public sealed class AuthApi
         {
             var request = new ResendConfirmationRequest(email);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/resendConfirmation";
+            var baseAuthUrl = GetAuthUrl();
+            var authUrl = baseAuthUrl + "api/auth/resendConfirmation";
 
             using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
 
@@ -181,7 +195,8 @@ public sealed class AuthApi
         {
             var request = new RefreshRequest(token);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/refresh";
+            var baseAuthUrl = GetAuthUrl();
+            var authUrl = baseAuthUrl + "api/auth/refresh";
 
             using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
 
@@ -224,7 +239,8 @@ public sealed class AuthApi
         {
             var request = new LogoutRequest(token);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/logout";
+            var baseAuthUrl = GetAuthUrl();
+            var authUrl = baseAuthUrl + "api/auth/logout";
 
             using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
 
@@ -256,7 +272,8 @@ public sealed class AuthApi
     {
         try
         {
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/ping";
+            var baseAuthUrl = GetAuthUrl();
+            var authUrl = baseAuthUrl + "api/auth/ping";
 
             using var resp = await authUrl.SendAsync(_httpClient, url =>
             {

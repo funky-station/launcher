@@ -51,6 +51,25 @@
                    Text="{loc:Loc tab-options-seasonal-branding-desc}"
                    Margin="8" />
 
+        <StackPanel Orientation="Horizontal" Margin="0 0 8 0">
+          <Button Click="SetFunkyAuth" Content="{loc:Loc tab-options-set-funky}" Margin="0 4 4 4" />
+          <Button Click="SetWizDenAuth" Content="{loc:Loc tab-options-set-wizden}" Margin="0 4 0 4" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0 0 8 0">
+          <TextBox DockPanel.Dock="Left"
+                   Name="AuthUrlBox"
+                   Text="{Binding CustomAuthUrl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                   Watermark="{loc:Loc tab-options-auth-url}"
+                   UseFloatingWatermark="False"
+                   MinWidth="400"
+                   Margin="4 0 4 0"/>
+          <Button Click="SetAuthUrl" Content="{loc:Loc tab-options-auth-url-button}" Margin="0 4 0 4" />
+        </StackPanel>
+        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap"
+                   Text="{loc:Loc tab-options-auth-url-desc}"
+                   Margin="8" />
+
         <Button Click="OpenHubSettings" Content="{loc:Loc tab-options-hub-settings}" Margin="4" HorizontalAlignment="Left" />
         <TextBlock VerticalAlignment="Center" TextWrapping="Wrap"
                    Text="{loc:Loc tab-options-hub-settings-desc}"

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -345,11 +346,12 @@ public partial class Connector : ReactiveObject
         if (info != null && info.AuthInformation.Mode != AuthMode.Disabled && _loginManager.ActiveAccount != null)
         {
             var account = _loginManager.ActiveAccount;
+            var customAuthUrl = _cfg.GetCVar(CVars.CustomAuthUrl);
 
             cVars.Add(("ROBUST_AUTH_TOKEN", account.LoginInfo.Token.Token));
             cVars.Add(("ROBUST_AUTH_USERID", account.LoginInfo.UserId.ToString()));
             cVars.Add(("ROBUST_AUTH_PUBKEY", info.AuthInformation.PublicKey));
-            cVars.Add(("ROBUST_AUTH_SERVER", ConfigConstants.AuthUrl.GetMostSuccessfulUrl()));
+            cVars.Add(("ROBUST_AUTH_SERVER", customAuthUrl));
         }
 
         try
