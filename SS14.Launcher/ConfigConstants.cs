@@ -35,8 +35,8 @@ public static class ConfigConstants
     public const string AccountManagementUrl = $"{AccountBaseUrl}Manage";
     public const string AccountRegisterUrl = $"{AccountBaseUrl}Register";
     public const string AccountResendConfirmationUrl = $"{AccountBaseUrl}ResendEmailConfirmation";
-    public const string WebsiteUrl = "https://spacestation14.com";
-    public const string DownloadUrl = "https://spacestation14.com/about/nightlies/";
+    public const string WebsiteUrl = "https://funkystation.org";
+    public const string DownloadUrl = "https://github.com/funky-station/launcher/releases/latest";
     public const string NewsFeedUrl = "https://spacestation14.com/post/index.xml";
     public const string TranslateUrl = "https://docs.spacestation14.com/en/general-development/contributing-translations.html";
 
@@ -57,7 +57,8 @@ public static class ConfigConstants
     // TODO: Take this from Cache-Control header responses instead.
     public static readonly TimeSpan RobustManifestCacheTime = TimeSpan.FromMinutes(15);
 
-    public static readonly UrlFallbackSet UrlLauncherInfo = LauncherDataBaseUrl + "info.json";
+    public static readonly UrlFallbackSet UrlLauncherInfo =
+        new(["https://github.com/funky-station/launcher/releases/latest/download/info.json"]);
     public static readonly UrlFallbackSet UrlAssetsBase = LauncherDataBaseUrl + "assets/";
 
     public const string FallbackUsername = "JoeGenero";
