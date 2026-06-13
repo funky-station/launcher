@@ -20,7 +20,7 @@ public class OptionsTabViewModel : MainWindowTabViewModel
     private readonly LoginManager _loginManager;
 
     public string FunkyAuthUrl = "https://tempauth.funkystation.org/";
-    public string WizDenAuthUrl = "https://auth.spacestation14.com/";
+    public string WizDenAuthUrl = "https://auth.playss14.com/";
 
     public LanguageSelectorViewModel Language { get; } = new();
 
