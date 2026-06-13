@@ -48,4 +48,26 @@ public partial class OptionsTabView : UserControl
     {
         await new HubSettingsDialog().ShowDialog((Window)this.GetVisualRoot()!);
     }
+
+    private void UpdateUrl(string url)
+    {
+        AuthUrlBox.Text = url;
+    }
+
+    private void SetAuthUrl(object? sender, RoutedEventArgs e)
+    {
+        ((OptionsTabViewModel)DataContext!).SetAuthUrl();
+    }
+
+    private void SetFunkyAuth(object? sender, RoutedEventArgs e)
+    {
+        var context = (OptionsTabViewModel)DataContext!;
+        context.SetAuthUrl(context.FunkyAuthUrl);
+    }
+
+    private void SetWizDenAuth(object? sender, RoutedEventArgs e)
+    {
+        var context = (OptionsTabViewModel)DataContext!;
+        context.SetAuthUrl(context.WizDenAuthUrl);
+    }
 }

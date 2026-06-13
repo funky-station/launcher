@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Space Station 14
+Encoding=UTF-8
+Exec=./SS14.Launcher %u
+Comment=A multiplayer space disaster simulator
+Icon=ss14.ico
+Categories=Game;
+Terminal=false
+Type=Application

@@ -109,8 +109,10 @@ def publish_linux(x64_only: bool):
         shutil.copytree(f"SS14.Launcher/bin/Release/{TFM}/linux-arm64/publish", "bin/publish/Linux/bin_arm64", dirs_exist_ok=True)
         shutil.copytree(f"SS14.Loader/bin/Release/{TFM}/linux-arm64/publish", "bin/publish/Linux/bin_arm64/loader", dirs_exist_ok=True)
 
+    os.chmod("PublishFiles/SS14.Launcher", "stat.S_IXUSR")
     shutil.copyfile("PublishFiles/SS14.Launcher", "bin/publish/Linux/SS14.Launcher")
     shutil.copyfile("PublishFiles/SS14.desktop", "bin/publish/Linux/SS14.desktop")
+    shutil.copyfile("PublishFiles/SS14.ico", "bin/publish/Linux/SS14.ico")
 
     shutil.make_archive("SS14.Launcher_Linux", "zip", "bin/publish/Linux")
 

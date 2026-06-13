@@ -1,0 +1,13 @@
+{
+  "messages": {
+    "en-US": [
+        "Free Palestine!",
+        "Hands off Cuba!",
+        "No war in Ukraine!"
+    ]
+  },
+  "allowedVersions": [
+    "62"
+  ],
+  "overrideAssets": {}
+}

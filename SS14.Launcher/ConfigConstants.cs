@@ -5,7 +5,7 @@ namespace SS14.Launcher;
 
 public static class ConfigConstants
 {
-    public const string CurrentLauncherVersion = "61";
+    public const string CurrentLauncherVersion = "62";
     public static readonly bool DoVersionCheck = true;
 
     // Refresh login tokens if they're within <this much> of expiry.
@@ -58,7 +58,8 @@ public static class ConfigConstants
     // TODO: Take this from Cache-Control header responses instead.
     public static readonly TimeSpan RobustManifestCacheTime = TimeSpan.FromMinutes(15);
 
-    public static readonly UrlFallbackSet UrlLauncherInfo = LauncherDataBaseUrl + "info.json";
+    public static readonly UrlFallbackSet UrlLauncherInfo =
+        new(["https://github.com/funky-station/launcher/releases/latest/download/info.json"]);
     public static readonly UrlFallbackSet UrlAssetsBase = LauncherDataBaseUrl + "assets/";
 
     public const string FallbackUsername = "JoeGenero";
