@@ -103,7 +103,7 @@ public static class CVars
     /// </summary>
     public static readonly CVarDef<bool> OverrideAssets = CVarDef.Create("OverrideAssets", true);
 
-    public static readonly CVarDef<string> CustomAuthUrl = CVarDef.Create("CustomAuthUrl", "https://tempauth.funkystation.org/");
+    public static readonly CVarDef<string> CustomAuthUrl = CVarDef.Create("CustomAuthUrl", "https://auth.playss14.com/");
 
     /// <summary>
     /// Stores the minimum player count value used by the "minimum player count" filter.
